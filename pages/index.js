@@ -1,9 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { getFeaturedPosts } from "../dummy-posts";
 
-export default function Home() {
+
+import PostList from '../components/posts/PostList';
+
+const HomePage = () => {
+  const featuredPosts = getFeaturedPosts();
+  
   return (
-    <p>Hello, world!</p>
+    <div>
+        <PostList posts={featuredPosts}/>
+    </div>
   )
 }
+
+export default HomePage

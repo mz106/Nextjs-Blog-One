@@ -1,16 +1,24 @@
-import { getFeaturedPosts } from "../dummy-posts";
+import { getFeaturedPosts } from "../helpers/utils";
 
+import PostList from "../components/posts/PostList";
 
-import PostList from '../components/posts/PostList';
-
-const HomePage = () => {
-  const featuredPosts = getFeaturedPosts();
-  
+const HomePage = (props) => {
   return (
     <div>
-        <PostList posts={featuredPosts}/>
+      <PostList posts={props.posts} />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export const getStaticProps = async () => {
+  const featuredPosts = await getFeaturedPosts();
+
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+    revalidate: 1800,
+  };
+};
+
+export default HomePage;

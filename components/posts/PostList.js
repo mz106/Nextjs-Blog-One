@@ -4,7 +4,7 @@ import PostItem from './PostItem';
 import classes from './PostList.module.css';
 
 const PostList = ({ posts }) => {
-
+  
   return (
     <Fragment>
         <ul className={classes.list_container}>

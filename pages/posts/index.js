@@ -10,15 +10,9 @@ const AllPosts = (props) => {
   const { posts } = props;
   
     const findPostsHandler = (year, month) => {
-    if(process.env.NODE_ENV === 'dev') {
         const fullPath = `posts/${year}/${month}`;
         router.push(fullPath);
-    } else {
-        const fullPath = `${process.env.FE_URL}/posts/${year}/${month}`;
-        router.push(fullPath);
-    }
-    
-  };
+    };
 
   return (
     <Fragment>

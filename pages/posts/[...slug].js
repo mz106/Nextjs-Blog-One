@@ -6,7 +6,7 @@ import ErrorAlert from "../../components/ui/ErrorAlert";
 
 const FilteredResultsPage = (props) => {
   const { posts } = props;
-  console.log("slug.js: ", posts)
+  
   if (!posts || posts.length === 0) {
     return <ErrorAlert>No posts found for your inputed year/month</ErrorAlert>;
   }

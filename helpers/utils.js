@@ -1,4 +1,5 @@
 
+
 export async function getAllPosts() {
     const url = process.env.FIREBASE_URI;
     const response = await fetch(`${url}/posts.json`);

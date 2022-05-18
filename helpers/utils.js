@@ -1,6 +1,8 @@
+require('isomorphic-fetch');
 
 export async function getAllPosts() {
-    const response = await fetch(process.env.FIREBASE_URI);
+    const url = process.env.NEXT_PUBLIC_FIREBASE_URI;
+    const response = await fetch(`${url}/posts.json`);
     const data = await response.json();
 
     const posts = [];

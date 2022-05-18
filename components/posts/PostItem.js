@@ -2,7 +2,7 @@ import classes from './PostItem.module.css';
 import Button from "../ui/Button";
 
 const PostItem = ({ id, title, description, body, date, image }) => {
-
+  
   const readableDateFormat = new Date(date).toLocaleDateString({
       day: 'numeric',
       month: 'long',

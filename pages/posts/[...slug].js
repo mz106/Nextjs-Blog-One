@@ -1,35 +1,48 @@
-import { useRouter } from 'next/router';
-import { getFilteredPosts } from '../../dummy-posts';
-import PostList from '../../components/posts/PostList';
 
-import ErrorAlert from '../../components/ui/ErrorAlert';
+import { getFilteredPosts } from "../../helpers/utils";
+import PostList from "../../components/posts/PostList";
 
-const FilteredResultsPage = () => {
-    const router = useRouter();
-    const filterData = router.query.slug;
-    
-    const filteredYear = filterData[0];
-    const filteredMonth = filterData[1];
+import ErrorAlert from "../../components/ui/ErrorAlert";
 
-    const numYear = +filteredYear;
-    const numMonth = +filteredMonth;
-
-    const posts = getFilteredPosts({
-        year: numYear,
-        month: numMonth,
-    });
-
-    if(!posts || posts.length === 0) {
-        return (
-            <ErrorAlert>No posts found for you inputed year/month</ErrorAlert>
-        );
-    }
+const FilteredResultsPage = (props) => {
+  const { posts } = props;
+  console.log("slug.js: ", posts)
+  if (!posts || posts.length === 0) {
+    return <ErrorAlert>No posts found for your inputed year/month</ErrorAlert>;
+  }
 
   return (
     <div>
-        <PostList posts={posts} />
+      <PostList posts={posts} />
     </div>
-  )
-}
+  );
+};
 
-export default FilteredResultsPage
+export const getServerSideProps = async (context) => {
+  const { params } = context;
+
+  const filterData = params.slug;
+
+  const filteredYear = filterData[0];
+  const filteredMonth = filterData[1];
+
+  const numYear = +filteredYear;
+  const numMonth = +filteredMonth;
+
+  const filteredPosts = await getFilteredPosts({
+    year: numYear,
+    month: numMonth,
+  });
+
+  return {
+    props: {
+      posts: filteredPosts,
+      date: {
+        year: numYear,
+        month: numMonth,
+      },
+    },
+  };
+};
+
+export default FilteredResultsPage;

@@ -57,12 +57,12 @@ export function getFeaturedPosts() {
   export function getFilteredPosts(dateFilter) {
     const { year, month } = dateFilter;
   
-    let filteredEvents = DUMMY_POSTS.filter((post) => {
+    let filteredPosts = DUMMY_POSTS.filter((post) => {
       const postDate = new Date(post.date);
       return postDate.getFullYear() === year && postDate.getMonth() === month - 1;
     });
   
-    return filteredEvents;
+    return filteredPosts;
   }
   
   export function getPostById(id) {

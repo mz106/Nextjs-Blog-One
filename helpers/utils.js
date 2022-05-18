@@ -1,4 +1,4 @@
-
+require('isomorphic-fetch');
 
 export async function getAllPosts() {
     const url = process.env.FIREBASE_URI;
